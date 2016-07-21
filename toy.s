@@ -29,21 +29,21 @@ lava_set:                               # @lava_set
 .Lfunc_begin0:
 	.loc	1 5 0                   # toy.c:5:0
 # BB#0:
-	push	rbp
+	pushq	%rbp
 .Ltmp2:
 	.cfi_def_cfa_offset 16
 .Ltmp3:
-	.cfi_offset rbp, -16
-	mov	rbp, rsp
+	.cfi_offset %rbp, -16
+	movq	%rsp, %rbp
 .Ltmp4:
-	.cfi_def_cfa_register rbp
-	mov	dword ptr [rbp - 4], edi
-	mov	dword ptr [rbp - 8], esi
+	.cfi_def_cfa_register %rbp
+	movl	%edi, -4(%rbp)
+	movl	%esi, -8(%rbp)
 	.loc	1 5 0 prologue_end      # toy.c:5:0
 .Ltmp5:
-	mov	eax, dword ptr [rbp - 4]
-	mov	dword ptr [4*rax + lava_val], esi
-	pop	rbp
+	movl	-4(%rbp), %eax
+	movl	%esi, lava_val(,%rax,4)
+	popq	%rbp
 	ret
 .Ltmp6:
 .Ltmp7:
@@ -59,20 +59,20 @@ lava_get:                               # @lava_get
 .Lfunc_begin1:
 	.loc	1 7 0                   # toy.c:7:0
 # BB#0:
-	push	rbp
+	pushq	%rbp
 .Ltmp10:
 	.cfi_def_cfa_offset 16
 .Ltmp11:
-	.cfi_offset rbp, -16
-	mov	rbp, rsp
+	.cfi_offset %rbp, -16
+	movq	%rsp, %rbp
 .Ltmp12:
-	.cfi_def_cfa_register rbp
-	mov	dword ptr [rbp - 4], edi
+	.cfi_def_cfa_register %rbp
+	movl	%edi, -4(%rbp)
 	.loc	1 7 0 prologue_end      # toy.c:7:0
 .Ltmp13:
-	mov	eax, dword ptr [rbp - 4]
-	mov	eax, dword ptr [4*rax + lava_val]
-	pop	rbp
+	movl	-4(%rbp), %eax
+	movl	lava_val(,%rax,4), %eax
+	popq	%rbp
 	ret
 .Ltmp14:
 .Ltmp15:
@@ -88,44 +88,44 @@ parse_header:                           # @parse_header
 .Lfunc_begin2:
 	.loc	1 37 0                  # toy.c:37:0
 # BB#0:
-	push	rbp
+	pushq	%rbp
 .Ltmp18:
 	.cfi_def_cfa_offset 16
 .Ltmp19:
-	.cfi_offset rbp, -16
-	mov	rbp, rsp
+	.cfi_offset %rbp, -16
+	movq	%rsp, %rbp
 .Ltmp20:
-	.cfi_def_cfa_register rbp
-	sub	rsp, 16
-	mov	rax, rsi
-	mov	qword ptr [rbp - 8], rdi
-	mov	qword ptr [rbp - 16], rax
+	.cfi_def_cfa_register %rbp
+	subq	$16, %rsp
+	movq	%rsi, %rax
+	movq	%rdi, -8(%rbp)
+	movq	%rax, -16(%rbp)
 	.loc	1 38 0 prologue_end     # toy.c:38:0
 .Ltmp21:
-	mov	rcx, qword ptr [rbp - 8]
-	mov	esi, 16
-	mov	edx, 1
-	mov	rdi, rax
-	call	fread
-	cmp	rax, 1
+	movq	-8(%rbp), %rcx
+	movl	$16, %esi
+	movl	$1, %edx
+	movq	%rax, %rdi
+	callq	fread
+	cmpq	$1, %rax
 	jne	.LBB2_3
 .Ltmp22:
 # BB#1:
 	.loc	1 40 0                  # toy.c:40:0
-	mov	rax, qword ptr [rbp - 16]
-	cmp	dword ptr [rax], 1279350337
+	movq	-16(%rbp), %rax
+	cmpl	$1279350337, (%rax)     # imm = 0x4C415641
 	jne	.LBB2_3
 .Ltmp23:
 # BB#2:
 	.loc	1 42 0                  # toy.c:42:0
-	add	rsp, 16
-	pop	rbp
+	addq	$16, %rsp
+	popq	%rbp
 	ret
 .LBB2_3:
-	mov	edi, 1
+	movl	$1, %edi
 	.loc	1 41 0                  # toy.c:41:0
 .Ltmp24:
-	call	exit
+	callq	exit
 .Ltmp25:
 .Ltmp26:
 	.size	parse_header, .Ltmp26-parse_header
@@ -141,42 +141,42 @@ parse_record:                           # @parse_record
 .Lfunc_begin3:
 	.loc	1 44 0                  # toy.c:44:0
 # BB#0:
-	push	rbp
+	pushq	%rbp
 .Ltmp29:
 	.cfi_def_cfa_offset 16
 .Ltmp30:
-	.cfi_offset rbp, -16
-	mov	rbp, rsp
+	.cfi_offset %rbp, -16
+	movq	%rsp, %rbp
 .Ltmp31:
-	.cfi_def_cfa_register rbp
-	sub	rsp, 16
-	mov	qword ptr [rbp - 8], rdi
-	mov	edi, 24
+	.cfi_def_cfa_register %rbp
+	subq	$16, %rsp
+	movq	%rdi, -8(%rbp)
+	movl	$24, %edi
 	.loc	1 45 0 prologue_end     # toy.c:45:0
 .Ltmp32:
-	call	malloc
-	mov	qword ptr [rbp - 16], rax
+	callq	malloc
+	movq	%rax, -16(%rbp)
 	.loc	1 46 0                  # toy.c:46:0
 .Ltmp33:
-	mov	rcx, qword ptr [rbp - 8]
-	mov	esi, 24
-	mov	edx, 1
-	mov	rdi, rax
-	call	fread
-	cmp	rax, 1
+	movq	-8(%rbp), %rcx
+	movl	$24, %esi
+	movl	$1, %edx
+	movq	%rax, %rdi
+	callq	fread
+	cmpq	$1, %rax
 	jne	.LBB3_2
 .Ltmp34:
 # BB#1:
 	.loc	1 48 0                  # toy.c:48:0
-	mov	rax, qword ptr [rbp - 16]
-	add	rsp, 16
-	pop	rbp
+	movq	-16(%rbp), %rax
+	addq	$16, %rsp
+	popq	%rbp
 	ret
 .LBB3_2:
-	mov	edi, 1
+	movl	$1, %edi
 	.loc	1 47 0                  # toy.c:47:0
 .Ltmp35:
-	call	exit
+	callq	exit
 .Ltmp36:
 .Ltmp37:
 	.size	parse_record, .Ltmp37-parse_record
@@ -191,135 +191,135 @@ consume_record:                         # @consume_record
 .Lfunc_begin4:
 	.loc	1 51 0                  # toy.c:51:0
 # BB#0:
-	push	rbp
+	pushq	%rbp
 .Ltmp40:
 	.cfi_def_cfa_offset 16
 .Ltmp41:
-	.cfi_offset rbp, -16
-	mov	rbp, rsp
+	.cfi_offset %rbp, -16
+	movq	%rsp, %rbp
 .Ltmp42:
-	.cfi_def_cfa_register rbp
-	sub	rsp, 16
-	mov	rcx, rdi
-	mov	qword ptr [rbp - 8], rcx
+	.cfi_def_cfa_register %rbp
+	subq	$16, %rsp
+	movq	%rdi, %rcx
+	movq	%rcx, -8(%rbp)
 	.loc	1 52 0 prologue_end     # toy.c:52:0
 .Ltmp43:
-	mov	edi, .L.str
-	xor	eax, eax
-	mov	rsi, rcx
-	call	printf
+	movl	$.L.str, %edi
+	xorl	%eax, %eax
+	movq	%rcx, %rsi
+	callq	printf
 	.loc	1 53 0                  # toy.c:53:0
 .Ltmp44:
-	mov	rax, qword ptr [rbp - 8]
-	cmp	dword ptr [rax + 16], 1
+	movq	-8(%rbp), %rax
+	cmpl	$1, 16(%rax)
 	jne	.LBB4_9
 # BB#1:
 	.loc	1 54 0                  # toy.c:54:0
 .Ltmp45:
-	cmp	qword ptr [rbp - 8], 0
+	cmpq	$0, -8(%rbp)
 	je	.LBB4_4
 # BB#2:
-	cmp	qword ptr [rbp - 8], 0
+	cmpq	$0, -8(%rbp)
 	je	.LBB4_4
 # BB#3:
 .Ltmp46:
 	#DEBUG_VALUE: lava_131 <- [RBP+-12]
 	.loc	1 55 0                  # toy.c:55:0
-	mov	dword ptr [rbp - 12], 0
+	movl	$0, -12(%rbp)
 	.loc	1 56 0                  # toy.c:56:0
-	mov	rax, qword ptr [rbp - 8]
-	movzx	eax, byte ptr [rax]
-	mov	dword ptr [rbp - 12], eax
+	movq	-8(%rbp), %rax
+	movzbl	(%rax), %eax
+	movl	%eax, -12(%rbp)
 	.loc	1 57 0                  # toy.c:57:0
-	mov	rcx, qword ptr [rbp - 8]
-	movzx	ecx, byte ptr [rcx + 1]
-	shl	ecx, 8
-	or	ecx, eax
-	mov	dword ptr [rbp - 12], ecx
+	movq	-8(%rbp), %rcx
+	movzbl	1(%rcx), %ecx
+	shll	$8, %ecx
+	orl	%eax, %ecx
+	movl	%ecx, -12(%rbp)
 	.loc	1 58 0                  # toy.c:58:0
-	mov	rax, qword ptr [rbp - 8]
-	movzx	eax, byte ptr [rax + 2]
-	shl	eax, 16
-	or	eax, ecx
-	mov	dword ptr [rbp - 12], eax
+	movq	-8(%rbp), %rax
+	movzbl	2(%rax), %eax
+	shll	$16, %eax
+	orl	%ecx, %eax
+	movl	%eax, -12(%rbp)
 	.loc	1 59 0                  # toy.c:59:0
-	mov	rcx, qword ptr [rbp - 8]
-	movzx	esi, byte ptr [rcx + 3]
-	shl	esi, 24
-	or	esi, eax
-	mov	dword ptr [rbp - 12], esi
-	mov	edi, 131
+	movq	-8(%rbp), %rcx
+	movzbl	3(%rcx), %esi
+	shll	$24, %esi
+	orl	%eax, %esi
+	movl	%esi, -12(%rbp)
+	movl	$131, %edi
 	.loc	1 60 0                  # toy.c:60:0
-	call	lava_set
+	callq	lava_set
 .Ltmp47:
 .LBB4_4:
-	mov	edi, 131
+	movl	$131, %edi
 	.loc	1 62 0                  # toy.c:62:0
 .Ltmp48:
-	call	lava_get
-	cmp	eax, 1818326494
+	callq	lava_get
+	cmpl	$1818326494, %eax       # imm = 0x6C6175DE
 	je	.LBB4_6
 # BB#5:
-	mov	edi, 131
-	call	lava_get
-	cmp	eax, -562732692
+	movl	$131, %edi
+	callq	lava_get
+	cmpl	$-562732692, %eax       # imm = 0xFFFFFFFFDE75616C
 	jne	.LBB4_7
 .LBB4_6:
-	mov	edi, 131
+	movl	$131, %edi
 	.loc	1 63 0                  # toy.c:63:0
-	call	lava_get
-	mov	eax, eax
-	lea	rdi, qword ptr [rax + .L.str1]
-	mov	rax, qword ptr [rbp - 8]
-	vmovss	xmm0, dword ptr [rax + 20]
-	vcvtss2sd	xmm0, xmm0, xmm0
+	callq	lava_get
+	movl	%eax, %eax
+	leaq	.L.str1(%rax), %rdi
+	movq	-8(%rbp), %rax
+	vmovss	20(%rax), %xmm0
+	vcvtss2sd	%xmm0, %xmm0, %xmm0
 	jmp	.LBB4_8
 .Ltmp49:
 .LBB4_9:
 	.loc	1 67 0                  # toy.c:67:0
-	mov	rax, qword ptr [rbp - 8]
-	cmp	dword ptr [rax + 16], 2
+	movq	-8(%rbp), %rax
+	cmpl	$2, 16(%rax)
 	jne	.LBB4_12
 # BB#10:
 	.loc	1 68 0                  # toy.c:68:0
 .Ltmp50:
-	mov	rax, qword ptr [rbp - 8]
-	mov	esi, dword ptr [rax + 20]
-	mov	edi, .L.str2
-	xor	eax, eax
-	call	printf
+	movq	-8(%rbp), %rax
+	movl	20(%rax), %esi
+	movl	$.L.str2, %edi
+	xorl	%eax, %eax
+	callq	printf
 	jmp	.LBB4_11
 .Ltmp51:
 .LBB4_7:
 	.loc	1 65 0                  # toy.c:65:0
-	mov	rax, qword ptr [rbp - 8]
-	vmovss	xmm0, dword ptr [rax + 20]
-	vcvtss2sd	xmm0, xmm0, xmm0
-	mov	edi, .L.str1
+	movq	-8(%rbp), %rax
+	vmovss	20(%rax), %xmm0
+	vcvtss2sd	%xmm0, %xmm0, %xmm0
+	movl	$.L.str1, %edi
 .LBB4_8:
-	mov	al, 1
-	call	printf
+	movb	$1, %al
+	callq	printf
 .Ltmp52:
 .LBB4_11:
 	.loc	1 74 0                  # toy.c:74:0
-	mov	rdi, qword ptr [rbp - 8]
-	call	free
+	movq	-8(%rbp), %rdi
+	callq	free
 	.loc	1 75 0                  # toy.c:75:0
-	add	rsp, 16
-	pop	rbp
+	addq	$16, %rsp
+	popq	%rbp
 	ret
 .LBB4_12:
 	.loc	1 71 0                  # toy.c:71:0
 .Ltmp53:
-	mov	rax, qword ptr [rbp - 8]
-	mov	ecx, dword ptr [rax + 16]
-	mov	edi, .L.str3
-	xor	eax, eax
-	mov	esi, ecx
-	call	printf
-	mov	edi, 1
+	movq	-8(%rbp), %rax
+	movl	16(%rax), %ecx
+	movl	$.L.str3, %edi
+	xorl	%eax, %eax
+	movl	%ecx, %esi
+	callq	printf
+	movl	$1, %edi
 	.loc	1 72 0                  # toy.c:72:0
-	call	exit
+	callq	exit
 .Ltmp54:
 .Ltmp55:
 	.size	consume_record, .Ltmp55-consume_record
@@ -334,63 +334,63 @@ main:                                   # @main
 .Lfunc_begin5:
 	.loc	1 77 0                  # toy.c:77:0
 # BB#0:
-	push	rbp
+	pushq	%rbp
 .Ltmp58:
 	.cfi_def_cfa_offset 16
 .Ltmp59:
-	.cfi_offset rbp, -16
-	mov	rbp, rsp
+	.cfi_offset %rbp, -16
+	movq	%rsp, %rbp
 .Ltmp60:
-	.cfi_def_cfa_register rbp
-	sub	rsp, 64
-	mov	dword ptr [rbp - 4], 0
-	mov	dword ptr [rbp - 8], edi
-	mov	qword ptr [rbp - 16], rsi
+	.cfi_def_cfa_register %rbp
+	subq	$64, %rsp
+	movl	$0, -4(%rbp)
+	movl	%edi, -8(%rbp)
+	movq	%rsi, -16(%rbp)
 	.loc	1 78 0 prologue_end     # toy.c:78:0
 .Ltmp61:
-	mov	rdi, qword ptr [rsi + 8]
-	mov	esi, .L.str4
-	call	fopen
-	mov	qword ptr [rbp - 24], rax
-	lea	rsi, qword ptr [rbp - 40]
+	movq	8(%rsi), %rdi
+	movl	$.L.str4, %esi
+	callq	fopen
+	movq	%rax, -24(%rbp)
+	leaq	-40(%rbp), %rsi
 	.loc	1 81 0                  # toy.c:81:0
-	mov	rdi, rax
-	call	parse_header
+	movq	%rax, %rdi
+	callq	parse_header
 	.loc	1 82 0                  # toy.c:82:0
-	mov	esi, dword ptr [rbp - 28]
-	mov	edi, .L.str5
-	xor	eax, eax
-	call	printf
+	movl	-28(%rbp), %esi
+	movl	$.L.str5, %edi
+	xorl	%eax, %eax
+	callq	printf
 	.loc	1 85 0                  # toy.c:85:0
 .Ltmp62:
-	mov	dword ptr [rbp - 44], 0
+	movl	$0, -44(%rbp)
 	jmp	.LBB5_1
 	.align	16, 0x90
 .LBB5_2:                                #   in Loop: Header=BB5_1 Depth=1
 .Ltmp63:
 	#DEBUG_VALUE: ent <- [RBP+-56]
 	.loc	1 86 0                  # toy.c:86:0
-	mov	rdi, qword ptr [rbp - 24]
-	call	parse_record
-	mov	qword ptr [rbp - 56], rax
+	movq	-24(%rbp), %rdi
+	callq	parse_record
+	movq	%rax, -56(%rbp)
 	.loc	1 87 0                  # toy.c:87:0
-	mov	rdi, rax
-	call	consume_record
+	movq	%rax, %rdi
+	callq	consume_record
 .Ltmp64:
 	.loc	1 85 0                  # toy.c:85:0
-	inc	dword ptr [rbp - 44]
+	incl	-44(%rbp)
 .Ltmp65:
 .LBB5_1:                                # =>This Inner Loop Header: Depth=1
-	mov	eax, dword ptr [rbp - 44]
-	movzx	ecx, word ptr [rbp - 32]
-	cmp	eax, ecx
+	movl	-44(%rbp), %eax
+	movzwl	-32(%rbp), %ecx
+	cmpl	%ecx, %eax
 	jb	.LBB5_2
 .Ltmp66:
 # BB#3:
-	xor	eax, eax
+	xorl	%eax, %eax
 	.loc	1 89 0                  # toy.c:89:0
-	add	rsp, 64
-	pop	rbp
+	addq	$64, %rsp
+	popq	%rbp
 	ret
 .Ltmp67:
 .Ltmp68:
