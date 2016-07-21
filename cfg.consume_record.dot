@@ -1,0 +1,36 @@
+digraph "CFG for 'consume_record' function" {
+	label="CFG for 'consume_record' function";
+
+	Node0x7ea500 [shape=record,label="{%0:\l  %1 = alloca %struct.file_entry*, align 8\l  %lava_131 = alloca i32, align 4\l  store %struct.file_entry* %ent, %struct.file_entry** %1, align 8\l  call void @llvm.dbg.declare(metadata !\{%struct.file_entry** %1\}, metadata\l... !122), !dbg !123\l  %2 = load %struct.file_entry** %1, align 8, !dbg !124\l  %3 = getelementptr inbounds %struct.file_entry* %2, i32 0, i32 0, !dbg !124\l  %4 = getelementptr inbounds [16 x i8]* %3, i32 0, i32 0, !dbg !124\l  %5 = call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([18 x i8]*\l... @.str, i32 0, i32 0), i8* %4), !dbg !124\l  %6 = load %struct.file_entry** %1, align 8, !dbg !125\l  %7 = getelementptr inbounds %struct.file_entry* %6, i32 0, i32 1, !dbg !125\l  %8 = load i32* %7, align 1, !dbg !125\l  %9 = icmp eq i32 %8, 1, !dbg !125\l  br i1 %9, label %10, label %74, !dbg !125\l|{<s0>T|<s1>F}}"];
+	Node0x7ea500:s0 -> Node0x7ea560;
+	Node0x7ea500:s1 -> Node0x7ea860;
+	Node0x7ea560 [shape=record,label="{%10:\l\l  %11 = load %struct.file_entry** %1, align 8, !dbg !127\l  %12 = icmp ne %struct.file_entry* %11, null, !dbg !127\l  br i1 %12, label %13, label %50, !dbg !127\l|{<s0>T|<s1>F}}"];
+	Node0x7ea560:s0 -> Node0x7ea5c0;
+	Node0x7ea560:s1 -> Node0x7ea680;
+	Node0x7ea5c0 [shape=record,label="{%13:\l\l  %14 = load %struct.file_entry** %1, align 8, !dbg !127\l  %15 = icmp ne %struct.file_entry* %14, null, !dbg !127\l  br i1 %15, label %16, label %50, !dbg !127\l|{<s0>T|<s1>F}}"];
+	Node0x7ea5c0:s0 -> Node0x7ea620;
+	Node0x7ea5c0:s1 -> Node0x7ea680;
+	Node0x7ea620 [shape=record,label="{%16:\l\l  call void @llvm.dbg.declare(metadata !\{i32* %lava_131\}, metadata !130), !dbg\l... !132\l  store i32 0, i32* %lava_131, align 4, !dbg !132\l  %17 = load %struct.file_entry** %1, align 8, !dbg !133\l  %18 = bitcast %struct.file_entry* %17 to i8*, !dbg !133\l  %19 = getelementptr inbounds i8* %18, i64 0, !dbg !133\l  %20 = load i8* %19, align 1, !dbg !133\l  %21 = zext i8 %20 to i32, !dbg !133\l  %22 = shl i32 %21, 0, !dbg !133\l  %23 = load i32* %lava_131, align 4, !dbg !133\l  %24 = or i32 %23, %22, !dbg !133\l  store i32 %24, i32* %lava_131, align 4, !dbg !133\l  %25 = load %struct.file_entry** %1, align 8, !dbg !134\l  %26 = bitcast %struct.file_entry* %25 to i8*, !dbg !134\l  %27 = getelementptr inbounds i8* %26, i64 1, !dbg !134\l  %28 = load i8* %27, align 1, !dbg !134\l  %29 = zext i8 %28 to i32, !dbg !134\l  %30 = shl i32 %29, 8, !dbg !134\l  %31 = load i32* %lava_131, align 4, !dbg !134\l  %32 = or i32 %31, %30, !dbg !134\l  store i32 %32, i32* %lava_131, align 4, !dbg !134\l  %33 = load %struct.file_entry** %1, align 8, !dbg !135\l  %34 = bitcast %struct.file_entry* %33 to i8*, !dbg !135\l  %35 = getelementptr inbounds i8* %34, i64 2, !dbg !135\l  %36 = load i8* %35, align 1, !dbg !135\l  %37 = zext i8 %36 to i32, !dbg !135\l  %38 = shl i32 %37, 16, !dbg !135\l  %39 = load i32* %lava_131, align 4, !dbg !135\l  %40 = or i32 %39, %38, !dbg !135\l  store i32 %40, i32* %lava_131, align 4, !dbg !135\l  %41 = load %struct.file_entry** %1, align 8, !dbg !136\l  %42 = bitcast %struct.file_entry* %41 to i8*, !dbg !136\l  %43 = getelementptr inbounds i8* %42, i64 3, !dbg !136\l  %44 = load i8* %43, align 1, !dbg !136\l  %45 = zext i8 %44 to i32, !dbg !136\l  %46 = shl i32 %45, 24, !dbg !136\l  %47 = load i32* %lava_131, align 4, !dbg !136\l  %48 = or i32 %47, %46, !dbg !136\l  store i32 %48, i32* %lava_131, align 4, !dbg !136\l  %49 = load i32* %lava_131, align 4, !dbg !137\l  call void @lava_set(i32 131, i32 %49), !dbg !137\l  br label %50, !dbg !138\l}"];
+	Node0x7ea620 -> Node0x7ea680;
+	Node0x7ea680 [shape=record,label="{%50:\l\l  %51 = call i32 @lava_get(i32 131), !dbg !139\l  %52 = icmp eq i32 1818326494, %51, !dbg !139\l  br i1 %52, label %56, label %53, !dbg !139\l|{<s0>T|<s1>F}}"];
+	Node0x7ea680:s0 -> Node0x7ea740;
+	Node0x7ea680:s1 -> Node0x7ea6e0;
+	Node0x7ea6e0 [shape=record,label="{%53:\l\l  %54 = call i32 @lava_get(i32 131), !dbg !139\l  %55 = icmp eq i32 -562732692, %54, !dbg !139\l  br i1 %55, label %56, label %66, !dbg !139\l|{<s0>T|<s1>F}}"];
+	Node0x7ea6e0:s0 -> Node0x7ea740;
+	Node0x7ea6e0:s1 -> Node0x7ea7a0;
+	Node0x7ea740 [shape=record,label="{%56:\l\l  %57 = call i32 @lava_get(i32 131), !dbg !141\l  %58 = zext i32 %57 to i64, !dbg !141\l  %59 = getelementptr inbounds i8* getelementptr inbounds ([12 x i8]* @.str1,\l... i32 0, i32 0), i64 %58, !dbg !141\l  %60 = load %struct.file_entry** %1, align 8, !dbg !141\l  %61 = getelementptr inbounds %struct.file_entry* %60, i32 0, i32 2, !dbg !141\l  %62 = bitcast %union.anon* %61 to float*, !dbg !141\l  %63 = load float* %62, align 1, !dbg !141\l  %64 = fpext float %63 to double, !dbg !141\l  %65 = call i32 (i8*, ...)* @printf(i8* %59, double %64), !dbg !141\l  br label %73, !dbg !141\l}"];
+	Node0x7ea740 -> Node0x7ea800;
+	Node0x7ea7a0 [shape=record,label="{%66:\l\l  %67 = load %struct.file_entry** %1, align 8, !dbg !142\l  %68 = getelementptr inbounds %struct.file_entry* %67, i32 0, i32 2, !dbg !142\l  %69 = bitcast %union.anon* %68 to float*, !dbg !142\l  %70 = load float* %69, align 1, !dbg !142\l  %71 = fpext float %70 to double, !dbg !142\l  %72 = call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([12 x i8]*\l... @.str1, i32 0, i32 0), double %71), !dbg !142\l  br label %73\l}"];
+	Node0x7ea7a0 -> Node0x7ea800;
+	Node0x7ea800 [shape=record,label="{%73:\l\l  br label %91, !dbg !143\l}"];
+	Node0x7ea800 -> Node0x7ea9e0;
+	Node0x7ea860 [shape=record,label="{%74:\l\l  %75 = load %struct.file_entry** %1, align 8, !dbg !144\l  %76 = getelementptr inbounds %struct.file_entry* %75, i32 0, i32 1, !dbg !144\l  %77 = load i32* %76, align 1, !dbg !144\l  %78 = icmp eq i32 %77, 2, !dbg !144\l  br i1 %78, label %79, label %85, !dbg !144\l|{<s0>T|<s1>F}}"];
+	Node0x7ea860:s0 -> Node0x7ea8c0;
+	Node0x7ea860:s1 -> Node0x7ea920;
+	Node0x7ea8c0 [shape=record,label="{%79:\l\l  %80 = load %struct.file_entry** %1, align 8, !dbg !146\l  %81 = getelementptr inbounds %struct.file_entry* %80, i32 0, i32 2, !dbg !146\l  %82 = bitcast %union.anon* %81 to i32*, !dbg !146\l  %83 = load i32* %82, align 1, !dbg !146\l  %84 = call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([14 x i8]*\l... @.str2, i32 0, i32 0), i32 %83), !dbg !146\l  br label %90, !dbg !148\l}"];
+	Node0x7ea8c0 -> Node0x7ea980;
+	Node0x7ea920 [shape=record,label="{%85:\l\l  %86 = load %struct.file_entry** %1, align 8, !dbg !149\l  %87 = getelementptr inbounds %struct.file_entry* %86, i32 0, i32 1, !dbg !149\l  %88 = load i32* %87, align 1, !dbg !149\l  %89 = call i32 (i8*, ...)* @printf(i8* getelementptr inbounds ([17 x i8]*\l... @.str3, i32 0, i32 0), i32 %88), !dbg !149\l  call void @exit(i32 1) #5, !dbg !151\l  unreachable, !dbg !151\l}"];
+	Node0x7ea980 [shape=record,label="{%90:\l\l  br label %91\l}"];
+	Node0x7ea980 -> Node0x7ea9e0;
+	Node0x7ea9e0 [shape=record,label="{%91:\l\l  %92 = load %struct.file_entry** %1, align 8, !dbg !152\l  %93 = bitcast %struct.file_entry* %92 to i8*, !dbg !152\l  call void @free(i8* %93) #6, !dbg !152\l  ret void, !dbg !153\l}"];
+}
